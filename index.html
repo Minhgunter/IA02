@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Bé tập tính</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+
+    <h1>Bé tập tính</h1>
+    <form name="frm">
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    <label for="fnumber">Số thứ nhất: </label>
+                </div>
+                <div class="col-5">
+                    <input type="number" id="fnumber" name="fnumber">
+                </div>
+                <div class="col-2">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="plus" name="opt" value="+">
+                        <label class="form-check-label" for="plus">Cộng</label>
+                      </div>
+                </div>
+                <div class="col-2">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="minus" name="opt" value="-">
+                        <label class="form-check-label" for="minus">Trừ</label>
+                      </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3">
+                    <label for="snumber">Số thứ hai: </label>
+                </div>
+                <div class="col-5">
+                    <input type="number" id="snumber" name="snumber">
+                </div>
+                <div class="col-2">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="multi" name="opt" value="*">
+                        <label class="form-check-label" for="multi">Nhân</label>
+                      </div>
+                </div>
+                <div class="col-2">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="divide" name="opt" value="/">
+                        <label class="form-check-label" for="divide">Chia</label>
+                      </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3">
+                    <label for="result">Kết quả: </label>
+                </div>
+                <div class="col-5" id="output" contenteditable="true">
+                    <span type="number" id="result" name="result">
+                </div>
+                <div class="col-2">
+                    <input type="button" value="Tính" onclick="compute(this.form)">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3">
+                    <label for="notice">Thông báo</label>
+                </div>
+                <div class="col-6">
+                    <output type="text" id="notice" name="notice">
+                </div>
+            </div>
+            
+        </div>
+    </form>
+    <script type="text/javascript">
+        function compute(frm) {
+            document.getElementById("notice").innerHTML="";
+            document.getElementById("result").innerHTML="";
+            var x = frm.fnumber.value; 
+            var y = frm.snumber.value;
+            if(x == "" && y == ""){
+                document.getElementById("notice").innerHTML="Số thứ nhất và thứ hai còn trống";
+                return false;
+            }
+            else if(x == ""){
+                    document.getElementById("notice").innerHTML="Số thứ nhất còn trống";
+                    return false;
+                }
+            else if(y == ""){
+                    document.getElementById("notice").innerHTML="Số thứ hai còn trống";
+                    return false;
+                }
+            x = parseFloat(x);
+            y = parseFloat(y);
+            var z = frm.opt.value;
+            var result;
+            switch(z) {
+                case "+": 
+                    result = x + y; break;
+                case "-": 
+                    result = x - y; break;
+                case "*":
+                    result = x * y; break;
+                case "/":
+                    if (y == 0){
+                        document.getElementById("notice").innerHTML="Math error";
+                        return;
+                    }
+                    result = x / y; break;
+                default: 
+                    document.getElementById("notice").innerHTML="Chưa chọn phép tính";
+                    return;
+            }
+            document.getElementById("result").innerHTML=result;
+        }
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
